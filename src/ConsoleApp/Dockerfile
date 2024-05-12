@@ -3,6 +3,8 @@ WORKDIR /App
 
 RUN dotnet tool install --global dotnet-dump --version 8.0.510501
 
+RUN dotnet tool install --global dotnet-counters --version 8.0.510501
+
 # Copy everything
 COPY . ./
 # Restore as distinct layers
@@ -21,4 +23,3 @@ COPY --from=build-env /root/.dotnet/tools /root/.dotnet/tools
 
 
 COPY --from=build-env /App/out .
-ENTRYPOINT ["dotnet", "ConsoleApp.dll"]
